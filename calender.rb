@@ -21,7 +21,7 @@ number_of_days.each do |a_day|
   if a_day.saturday?
     puts a_day.day.to_s.rjust(2) + " "
 	else
-		print a_day.day.to_s.rjust(2) + " "
-	end
+	  print a_day.day.to_s.rjust(2) + " "
+  end
 end
 puts
