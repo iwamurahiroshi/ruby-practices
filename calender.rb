@@ -20,7 +20,7 @@ first_day.wday.to_i.times{print" ".rjust(2) + " "}
 number_of_days.each do |a_day|
   if a_day.saturday?
     puts a_day.day.to_s.rjust(2) + " "
-	else
+  else
     print a_day.day.to_s.rjust(2) + " "
   end
 end
