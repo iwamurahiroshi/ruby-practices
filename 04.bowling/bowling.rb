@@ -2,30 +2,38 @@
 
 score = ARGV[0]
 split_score = score.split(',')
-shots = []
+score_exchanged_integer = []
 split_score.each do |s|
-  if s == 'X' && shots.length < 18
-    shots << 10
-    shots << 0
+  if s == 'X' && score_exchanged_integer.length < 18
+    score_exchanged_integer << 10
+    score_exchanged_integer << 0
   elsif s == 'X'
-    shots << 10
+    score_exchanged_integer << 10
   else
-    shots << s.to_i
+    score_exchanged_integer << s.to_i
   end
 end
 
-shots_per_frame = shots.each_slice(2).to_a
-frame_counter = 1
-total_score = 0
-
-shots_per_frame.each do |x, y|
-  total_score += x + y.to_i
-  if x == 10 && frame_counter < 10
-    total_score += shots_per_frame[frame_counter][0] + shots_per_frame[frame_counter][1]
-    total_score += shots_per_frame[frame_counter + 1][0] if shots_per_frame[frame_counter][0] == 10 && frame_counter < 9
-  elsif x + y.to_i == 10 && frame_counter < 10
-    total_score += shots_per_frame[frame_counter][0]
+score_per_frame = []
+score_exchanged_integer.each_slice(2) do |x|
+  if score_per_frame.length == 10
+    score_per_frame[9] << x[0]
+  else
+    score_per_frame << x
   end
-  frame_counter += 1
+end
+
+total_score = 0
+score_per_frame.each.with_index(1) do |shots, frame|
+  total_score +=
+  if frame < 9 && shots[0] == 10 && score_per_frame[frame][0] == 10
+    shots.sum+ score_per_frame[frame][0] + score_per_frame[frame + 1][0]
+  elsif frame < 10 && shots[0] == 10
+    shots.sum+ score_per_frame[frame][0] + score_per_frame[frame][1]
+  elsif frame < 10 && shots.sum == 10
+    shots.sum+ score_per_frame[frame][0]
+  else
+    shots.sum
+  end
 end
 puts total_score
