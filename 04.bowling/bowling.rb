@@ -26,14 +26,14 @@ end
 total_score = 0
 score_per_frame.each.with_index(1) do |shots, frame|
   total_score +=
-  if frame < 9 && shots[0] == 10 && score_per_frame[frame][0] == 10
-    shots.sum+ score_per_frame[frame][0] + score_per_frame[frame + 1][0]
-  elsif frame < 10 && shots[0] == 10
-    shots.sum+ score_per_frame[frame][0] + score_per_frame[frame][1]
-  elsif frame < 10 && shots.sum == 10
-    shots.sum+ score_per_frame[frame][0]
-  else
-    shots.sum
-  end
+    if frame < 9 && shots[0] == 10 && score_per_frame[frame][0] == 10
+      shots.sum + score_per_frame[frame][0] + score_per_frame[frame + 1][0]
+    elsif frame < 10 && shots[0] == 10
+      shots.sum + score_per_frame[frame][0] + score_per_frame[frame][1]
+    elsif frame < 10 && shots.sum == 10
+      shots.sum + score_per_frame[frame][0]
+    else
+      shots.sum
+    end
 end
 puts total_score
