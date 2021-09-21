@@ -18,10 +18,7 @@ longest_wordsize_per_column = longest_word_per_column.map(&:length)
 transposed_files = sliced_files.transpose
 transposed_files.each do |files_per_column|
   files_per_column.each.with_index(1) do |file, i|
-    if i == column
-      puts file&.ljust(longest_wordsize_per_column[i - 1] + 3)
-    else
-      print file&.ljust(longest_wordsize_per_column[i - 1] + 3)
-    end
+    print file&.ljust(longest_wordsize_per_column[i - 1] + 3)
+    puts if i == column
   end
 end
